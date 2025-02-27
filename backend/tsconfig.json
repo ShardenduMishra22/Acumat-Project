@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "target": "es6",
+    "rootDir": "./", 
+    "strict": true,
+    "jsx": "react",
+  },
+//   Prevents TypeScript from compiling files in the following directories ie unnecessary files
+  "exclude": ["node_modules", "dist"]
+}

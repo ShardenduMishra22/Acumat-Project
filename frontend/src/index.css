@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #FFF7D6;
+  --foreground: #2D2E2D;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #A020F0;
+  /* More vibrant purple */
+  --primary-foreground: #FFF7D6;
+  --secondary: #00B8A9;
+  /* More vivid teal */
+  --secondary-foreground: #2D2E2D;
+  --muted: #D6D6D6;
+  --muted-foreground: #2D2E2D;
+  --accent: #00B8A9;
+  --accent-foreground: #2D2E2D;
+  --destructive: #FF2E2E;
+  --destructive-foreground: #FFF7D6;
+  --border: #2D2E2D;
+  --input: #FFFFFF;
+  --ring: #A020F0;
+  --chart-1: #A020F0;
+  --chart-2: #00B8A9;
+  --chart-3: #2D2E2D;
+  --chart-4: #FFF7D6;
+  --chart-5: #A020F0;
+  --radius: 0.625rem;
+  --sidebar: #00B8A9;
+  --sidebar-foreground: #2D2E2D;
+  --sidebar-primary: #A020F0;
+  --sidebar-primary-foreground: #FFF7D6;
+  --sidebar-accent: #00B8A9;
+  --sidebar-accent-foreground: #2D2E2D;
+  --sidebar-border: #2D2E2D;
+  --sidebar-ring: #A020F0;
+}
+
+.dark {
+  --background: #2D2E2D;
+  --foreground: #FFF7D6;
+  --card: #1E1E1E;
+  --card-foreground: #FFF7D6;
+  --popover: #1E1E1E;
+  --popover-foreground: #FFF7D6;
+  --primary: #A020F0;
+  --primary-foreground: #FFF7D6;
+  --secondary: #00B8A9;
+  --secondary-foreground: #2D2E2D;
+  --muted: #444444;
+  --muted-foreground: #FFF7D6;
+  --accent: #00B8A9;
+  --accent-foreground: #2D2E2D;
+  --destructive: #FF2E2E;
+  --destructive-foreground: #FFF7D6;
+  --border: #FFF7D6;
+  --input: #2D2E2D;
+  --ring: #A020F0;
+  --chart-1: #A020F0;
+  --chart-2: #00B8A9;
+  --chart-3: #2D2E2D;
+  --chart-4: #FFF7D6;
+  --chart-5: #A020F0;
+  --sidebar: #2D2E2D;
+  --sidebar-foreground: #FFF7D6;
+  --sidebar-primary: #A020F0;
+  --sidebar-primary-foreground: #FFF7D6;
+  --sidebar-accent: #00B8A9;
+  --sidebar-accent-foreground: #2D2E2D;
+  --sidebar-border: #FFF7D6;
+  --sidebar-ring: #A020F0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-primary;
+  }
+
+  button {
+    @apply bg-primary text-primary-foreground font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground;
+  }
+}
