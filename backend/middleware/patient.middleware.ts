@@ -22,7 +22,7 @@ export const PatientMiddleware = (req: Request, res: Response, next: NextFunctio
             req.body._id = decodedToken._id;
             req.body.role = decodedToken.role;
 
-            if ((decoded as { role: string }).role !== "patient") {
+            if ((decoded as { role: string }).role !== "Patient") {
                 apiResponse(res, 401, "Unauthorized");
             }
 
