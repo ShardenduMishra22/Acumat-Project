@@ -1,0 +1,26 @@
+import { Schema } from "mongoose";
+import { ICase } from "../Types";
+
+
+export const caseSchema: Schema<ICase> = new Schema(
+  {
+    patientId: {
+      type: Schema.Types.ObjectId,
+      ref: "Patient",
+      required: [true, "Patient ID is required"],
+    },
+    hospitalId: {
+      type: Schema.Types.ObjectId,
+      ref: "Hospital",
+      required: [true, "Hospital ID is required"],
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "Approved", "Rejected"],
+      required: [true, "Status is required"],
+    },
+  },
+  { timestamps: true }
+);
+
+
