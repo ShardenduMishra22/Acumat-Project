@@ -1,6 +1,6 @@
 import {
-    login,
-    register,
+    loginP,
+    registerP,
     getProfile,
     verifyPatient,
     getReportAll,
@@ -12,13 +12,22 @@ import {
     getAllNotification
 } from "../controllers/MainControllers/general.controller"
 
-export {
+import{
     login,
     register,
+    verifyHospital
+} from "../controllers/MainControllers/hospital.controller"
+
+export {
+    login,
+    loginP,
+    register,
+    registerP,
     getProfile,
     getReportAll,
     getReportOne,
     updateProfile,
     verifyPatient,
+    verifyHospital,
     getAllNotification,
 };

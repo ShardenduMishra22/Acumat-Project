@@ -47,17 +47,17 @@
 
 1. **POST** `/login` → Authenticate a hospital.
 2. **POST** `/register` → Register a new hospital.  
-2.5. **POST** `/ver` → Register a new hospital.  
+3. **POST** `/verifyHospital` → Register a new hospital.  
 
 
 ### **Case Management**
 
-3. **GET** `/cases` → Retrieve all cases.  
-4. **POST** `/cases` → Create a new case.  
-5. **DELETE** `/cases/:id` → Remove a case.  
-6. **PUT** `/cases/:id` → Update a specific case.  
-7. **GET** `/cases/:id` → Retrieve a specific case.  
-8. **PUT** `/cases/status/:id` → Update the status of a specific case (e.g., "Pending", "Approved", "Rejected").
+4. **GET** `/cases` → Retrieve all cases.  
+5. **POST** `/cases` → Create a new case.  
+6. **DELETE** `/cases/:id` → Remove a case.  
+7. **PUT** `/cases/:id` → Update a specific case.  
+8. **GET** `/cases/:id` → Retrieve a specific case.  
+9. **PUT** `/cases/status/:id` → Update the status of a specific case (e.g., "Pending", "Approved", "Rejected").
 
 ### **Case Data Model**
 
@@ -77,10 +77,10 @@
 
 *(Images are stored as documents with `documentType` set to `"image"`.)*
 
-9. **DELETE** `/cases/images/:id` → Remove specific images.
-10. **GET** `/cases/images/:id` → Get images related to a specific case.  
-11. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
-12. **PUT** `/cases/images/:id` → Update images for a case (e.g., add annotations or replace images).  
+10. **DELETE** `/cases/images/:id` → Remove specific images.
+11. **GET** `/cases/images/:id` → Get images related to a specific case.  
+12. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
+13. **PUT** `/cases/images/:id` → Update images for a case (e.g., add annotations or replace images).  
 
 ### **Image Data Model**
 
@@ -101,11 +101,11 @@
 
 ### **Report & Document Management**
 
-16. **GET** `/documents/:id` → Retrieve a specific document.  
-17. **DELETE** `/documents/:id` → Remove an uploaded document.
-18. **GET** `/cases/:id/reports` → Fetch generated reports for a case.  
-19. **POST** `/documents` → Upload additional PDFs or supporting documents.  
-20. **POST** `/reports/send` → Send a report to a patient (via email or hospital system).  
+14. **GET** `/documents/:id` → Retrieve a specific document.  
+15. **DELETE** `/documents/:id` → Remove an uploaded document.
+16. **GET** `/cases/:id/reports` → Fetch generated reports for a case.  
+17. **POST** `/documents` → Upload additional PDFs or supporting documents.  
+18. **POST** `/reports/send` → Send a report to a patient (via email or hospital system).  
 
 ### **Report Data Model**
 
@@ -142,13 +142,13 @@
 
 ### **Emergency & Quick Actions**
 
-21. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).
+19. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).
 
 ---
 
 ### **Guidelines & Notifications**
 
-22. **GET** `/notifications` → Retrieve alerts and notifications.
+20. **GET** `/notifications` → Retrieve alerts and notifications.
 
 ---
 

@@ -4,9 +4,14 @@ import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcryptjs";
 
-const register = async (req: Request, res: Response) => {
+const registerP = async (req: Request, res: Response) => {
     try {
-        const { fullName, patientId, email, password, phoneNumber, gender } = req.body;
+        const { fullName, email, password, phoneNumber, gender } = req.body;
+
+        let patientId;
+        do {
+            patientId = "P-" + fullName.split(" ").join("").toLowerCase() + Math.floor(Math.random() * 1000);
+        } while (await Patient.findOne({ patientId }));
 
         if (!fullName || !patientId || !email || !password || !phoneNumber || !gender) {
             return apiResponse(res, 400, "Please fill all fields");
@@ -47,7 +52,7 @@ const register = async (req: Request, res: Response) => {
     }
 };
 
-const login = async (req: Request, res: Response) => {
+const loginP = async (req: Request, res: Response) => {
     try{
         const { email, password } = req.body;
 
@@ -155,7 +160,7 @@ const getProfile = async (req: Request, res: Response) => {
 const updateProfile = async (req: Request, res: Response) => {
     try{
         const { _id, fullName, email, phoneNumber } = req.body;
-        const patient = await Patient.findById({ _id });
+        const patient = await Patient.findById(_id, "-password");
 
         if(!patient){
             return apiResponse(res, 404, "Patient not found");
@@ -174,8 +179,8 @@ const updateProfile = async (req: Request, res: Response) => {
 }
 
 export {
-    login,
-    register,
+    loginP,
+    registerP,
     getProfile,
     getReportOne,
     getReportAll,

@@ -33,10 +33,6 @@ export const hospitalSchema: Schema<IHospital> = new Schema(
         ref: "Case",
       },
     ],
-    status: {
-      type: String,
-      required: [true, "Status is required"],
-    },
     role: {
       type: String,
       enum: ["Hospital"],

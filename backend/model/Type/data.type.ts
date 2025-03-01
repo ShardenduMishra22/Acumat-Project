@@ -14,7 +14,6 @@ export interface IPatient extends Document {
 
 export interface IHospital extends Document {
   email: string;
-  status: string;
   address: string;
   createdAt?: Date;
   updatedAt?: Date;
