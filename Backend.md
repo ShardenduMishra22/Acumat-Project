@@ -1,4 +1,4 @@
-  # **User Types**
+# **User Types**
 
 1. **Patient (`/patient`)**
 2. **Hospital (`/hospital`)**
@@ -9,29 +9,33 @@
 
 ### **Authentication**
 
-2. **POST** `/login` → Authenticate a patient.  
-1. **POST** `/register` → Register a new patient.  
+1. **POST** `/login` → Authenticate a patient.
+2. **POST** `/register` → Register a new patient.  
 
 ### **Report & History**
 
+3. **POST** `/verifyPatient` → Verify Admin using JWT. 
 4. **GET** `/report/:id` → Retrieve a specific report.  
-3. **GET** `/reports` → Retrieve all available reports.  
-5. **GET** `/history` → Fetch the patient’s case history.  
+5. **GET** `/reports` → Retrieve all available reports.  
 
 ### **Profile Management**
 
 6. **GET** `/profile` → Get patient profile details.  
-7. **PUT** `/profile` → Update patient profile details.  
+7. **PUT** `/profile` → Update patient profile details.
 
 ### **Patient Data Model**
 
 ```json
 {
   "role": "Patient",
-  "gender": "string",
-  "full_name": "string",
-  "phone_number": "string",
-  "patient_id": "Unique ID",
+  "email": "string",
+  "password": "string",
+  "fullName": "string",
+  "phoneNumber": "string",
+  "createdAt": "timestamp",
+  "patientId": "Unique ID",
+  "updatedAt": "timestamp",
+  "gender": "Male" | "Female"
 }
 ```
 
@@ -41,28 +45,29 @@
 
 ### **Authentication**
 
-1. **POST** `/register` → Register a new hospital.  
-2. **POST** `/login` → Authenticate a hospital.  
+1. **POST** `/login` → Authenticate a hospital.
+2. **POST** `/register` → Register a new hospital.  
+2.5. **POST** `/ver` → Register a new hospital.  
+
 
 ### **Case Management**
 
-3. **GET** `/cases` → Get all cases.  
+3. **GET** `/cases` → Retrieve all cases.  
 4. **POST** `/cases` → Create a new case.  
-5. **GET** `/cases/:id` → Retrieve a specific case.  
+5. **DELETE** `/cases/:id` → Remove a case.  
 6. **PUT** `/cases/:id` → Update a specific case.  
-7. **DELETE** `/cases/:id` → Remove a case.  
-8. **PUT** `/cases/status/:id` → Update the status of a specific case (e.g., "In Progress", "Completed").  
+7. **GET** `/cases/:id` → Retrieve a specific case.  
+8. **PUT** `/cases/status/:id` → Update the status of a specific case (e.g., "Pending", "Approved", "Rejected").
 
 ### **Case Data Model**
 
 ```json
 {
-  "status": "string",
-  "case_id": "Unique ID",
-  "created_at": "timestamp",
-  "updated_at": "timestamp",
-  "patient_id": "Reference to patient",
-  "hospital_id": "Reference to hospital",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp",
+  "patientId": "Reference to patient",
+  "hospitalId": "Reference to hospital",
+  "status": "Pending" | "Approved" | "Rejected"
 }
 ```
 
@@ -70,43 +75,25 @@
 
 ### **Image Management**
 
-9. **GET** `/cases/images/:id` → Get images related to a specific case.  
-10. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
-11. **PUT** `/cases/images/:id` → Update images for a case (add annotations, replace, etc.).  
-12. **DELETE** `/cases/images/:id` → Remove specific images.  
+*(Images are stored as documents with `documentType` set to `"image"`.)*
+
+9. **DELETE** `/cases/images/:id` → Remove specific images.
+10. **GET** `/cases/images/:id` → Get images related to a specific case.  
+11. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
+12. **PUT** `/cases/images/:id` → Update images for a case (e.g., add annotations or replace images).  
 
 ### **Image Data Model**
 
 ```json
 {
-  "image_url": "string",
-  "image_id": "Unique ID",
-  "uploaded_at": "timestamp",
-  "case_id": "Reference to case",
-  "annotations": ["array of annotation data"],
-}
-```
-
----
-
-### **Lab & Vitals Management**
-
-13. **POST** `/cases/:id/labs` → Submit lab results and vital signs (CBC, glucose, BP, HR, etc.).  
-14. **GET** `/cases/:id/labs` → Retrieve lab and vital data for a case.  
-15. **PUT** `/cases/:id/labs` → Update lab results if needed.  
-
-### **Lab & Vitals Data Model**
-
-```json
-{
-  "hr": "value",
-  "bp": "value",
-  "cbc": "value",
-  "glucose": "value",
-  "lab_id": "Unique ID",
-  "o2_saturation": "value",
-  "updated_at": "timestamp",
-  "case_id": "Reference to case",
+  "documentType": "image",
+  "documentUrl": "string",
+  "documentName": "string",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp",
+  "caseId": "Reference to case",
+  "patientId": "Reference to patient",
+  // (Annotations can be handled within the document metadata if required.)
 }
 ```
 
@@ -114,20 +101,26 @@
 
 ### **Report & Document Management**
 
-16. **GET** `/cases/:id/reports` → Fetch generated reports.  
-17. **POST** `/reports/send` → Send a report to a patient via email or hospital system.  
-18. **POST** `/documents` → Upload additional PDFs or supporting documents.  
-19. **GET** `/documents/:id` → Retrieve a specific document.  
-20. **DELETE** `/documents/:id` → Remove an uploaded document.  
+16. **GET** `/documents/:id` → Retrieve a specific document.  
+17. **DELETE** `/documents/:id` → Remove an uploaded document.
+18. **GET** `/cases/:id/reports` → Fetch generated reports for a case.  
+19. **POST** `/documents` → Upload additional PDFs or supporting documents.  
+20. **POST** `/reports/send` → Send a report to a patient (via email or hospital system).  
 
 ### **Report Data Model**
 
 ```json
 {
-  "report_url": "string",
-  "report_id": "Unique ID",
-  "created_at": "timestamp",
-  "case_id": "Reference to case",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp",
+  "BP": "string (optional)",
+  "HR": "string (optional)",
+  "caseId": "Reference to case",
+  "timeOfLastNormal": "timestamp",
+  "patientId": "Reference to patient",
+  "O2_Saturation": "string (optional)",
+  "symptoms": ["array of symptom strings"],
+  "document": "Reference to associated document (optional)"
 }
 ```
 
@@ -135,10 +128,13 @@
 
 ```json
 {
-  "document_url": "string",
-  "document_id": "Unique ID",
-  "uploaded_at": "timestamp",
-  "case_id": "Reference to case",
+  "documentUrl": "string",
+  "documentName": "string",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp",
+  "caseId": "Reference to case",
+  "patientId": "Reference to patient",
+  "documentType": "pdf" | "doc" | "docx" | "image"
 }
 ```
 
@@ -146,18 +142,33 @@
 
 ### **Emergency & Quick Actions**
 
-21. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).  
+21. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).
 
 ---
 
 ### **Guidelines & Notifications**
 
-22. **GET** `/guidelines` → Fetch clinical guidelines for reference.  
-23. **GET** `/notifications` → Retrieve alerts and notifications.  
+22. **GET** `/notifications` → Retrieve alerts and notifications.
+
+---
+
+### **Additional Notes**
+
+- **Report Summary:**  
+  The report summary for each case includes key findings such as:  
+  - **Diagnosis:** e.g., "Large Vessel Occlusion Detected"  
+  - **Treatment Recommendations:** e.g., "Eligible for Thrombolysis"  
+  - **Critical Values:** Highlighting abnormal lab results or vital signs.
+
+- **Data Relationships:**  
+  Cases reference patients and hospitals via their unique IDs. Documents (including images and reports) are stored in separate collections and are linked to cases using a `caseId`. This normalized approach keeps collections independent, although you may choose to embed document/report IDs within a case document for performance reasons if needed.
+
+- **Timestamps:**  
+  Most data models include `createdAt` and `updatedAt` fields to help with tracking and querying.
 
 
-The report summary is specific to an individual case. Each case goes through data entry, image upload, and lab input, and then the system generates a summary of the key findings. This could include:
+#### The report summary is specific to an individual case. Each case goes through data entry, image upload, and lab input, and then the system generates a summary of the key findings. This could include:
 
-Diagnosis (e.g., "Large Vessel Occlusion Detected")
-Treatment Recommendations (e.g., "Eligible for Thrombolysis")
-Critical Values (highlighting abnormal lab results or vitals)
+#### Diagnosis (e.g., "Large Vessel Occlusion Detected")
+#### Treatment Recommendations (e.g., "Eligible for Thrombolysis")
+#### Critical Values (highlighting abnormal lab results or vitals)

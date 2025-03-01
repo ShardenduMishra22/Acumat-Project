@@ -5,6 +5,8 @@ export interface IPatient extends Document {
   role: "Patient";
   password: string;
   fullName: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   patientId: string;
   phoneNumber: string;
   gender: "Male" | "Female";
@@ -14,6 +16,8 @@ export interface IHospital extends Document {
   email: string;
   status: string;
   address: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   role: "Hospital";
   password: string;
   fullName: string;
@@ -22,12 +26,16 @@ export interface IHospital extends Document {
 }
 
 export interface ICase extends Document {
+  createdAt?: Date;
+  updatedAt?: Date;
   patientId: Types.ObjectId;
   hospitalId: Types.ObjectId;
   status: "Pending" | "Approved" | "Rejected";
 }
 
 export interface IDocument extends Document {
+  createdAt?: Date;
+  updatedAt?: Date;
   documentUrl: string;
   documentName: string;
   caseId: Types.ObjectId;
@@ -38,12 +46,21 @@ export interface IDocument extends Document {
 export interface IReport extends Document {
   BP?: string;
   HR?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   symptoms: string[];
   O2_Saturation?: string;
   timeOfLastNormal: Date;
   caseId: Types.ObjectId;
   patientId: Types.ObjectId;
   document?: Types.ObjectId;
+}
+
+export interface INotification extends Document {
+  createdAt?: Date;
+  updatedAt?: Date;
+  notifications: string[];
+  hospitalId: Types.ObjectId;
 }
 
 /*

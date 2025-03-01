@@ -2,18 +2,23 @@ import {
     login,
     register,
     getProfile,
-    verifyAdmin,
+    verifyPatient,
     getReportAll,
     getReportOne,
     updateProfile
 } from './MainControllers/patient.controller';
 
+import {
+    getAllNotification
+} from "../controllers/MainControllers/general.controller"
+
 export {
     login,
     register,
     getProfile,
-    verifyAdmin,
     getReportAll,
     getReportOne,
-    updateProfile
+    updateProfile,
+    verifyPatient,
+    getAllNotification,
 };

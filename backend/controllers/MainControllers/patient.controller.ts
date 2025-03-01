@@ -82,10 +82,11 @@ const login = async (req: Request, res: Response) => {
     }
 }
 
-const verifyAdmin = async (req: Request, res: Response) => {
+const verifyPatient = async (req: Request, res: Response) => {
     try{
         const { _id, role } = req.body;
-        if(role !== "admin"){
+
+        if(role !== "Patient"){
             return apiResponse(res, 401, "Unauthorized Access");
         }
 
@@ -94,7 +95,7 @@ const verifyAdmin = async (req: Request, res: Response) => {
             return apiResponse(res, 404, "Patient not found");
         }
 
-        return apiResponse(res, 200, "Admin Verified Successfully", [patient]);
+        return apiResponse(res, 200, "Patient Verified Successfully", [patient]);
     }catch(err){
         console.log("There was an Error", err);
         apiResponse(res, 500, "Internal Server Error");
@@ -176,8 +177,8 @@ export {
     login,
     register,
     getProfile,
-    verifyAdmin,
-    getReportAll,
     getReportOne,
-    updateProfile
+    getReportAll,
+    updateProfile,
+    verifyPatient,
 }

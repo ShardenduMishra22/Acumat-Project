@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { IPatient } from "./Type/data.type";
+import { IPatient } from "../Type/data.type";
 
 export const patientSchema: Schema<IPatient> = new Schema(
   {
@@ -30,7 +30,6 @@ export const patientSchema: Schema<IPatient> = new Schema(
     role: {
       type: String,
       enum: ["Patient"],
-      required: [true, "Role is required"],
       default: "Patient",
     },
     phoneNumber: {

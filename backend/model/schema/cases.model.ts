@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { ICase } from "./Type/data.type";
+import { ICase } from "../Type/data.type";
 
 
 export const caseSchema: Schema<ICase> = new Schema(

@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { IHospital } from "./Type/data.type";
+import { IHospital } from "../Type/data.type";
 
 
 export const hospitalSchema: Schema<IHospital> = new Schema(
