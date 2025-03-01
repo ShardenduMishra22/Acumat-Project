@@ -3,23 +3,22 @@ import {
     login,
     register,
     getProfile,
-    getHistory,
     getReportAll,
     getReportOne,
     updateProfile
 } from "../../controllers/index"
+import { PatientMiddleware } from "../../middleware/patient.middleware";
 
 const PatientRouter = Router();
 
 PatientRouter.post("/login", login);
 PatientRouter.post("/register", register);
 
-PatientRouter.get("/profile", getProfile);
-PatientRouter.get("/history", getHistory);
-PatientRouter.get("/report", getReportAll);
-PatientRouter.get("/report/:id", getReportOne);
+PatientRouter.get("/profile",PatientMiddleware ,getProfile);
+PatientRouter.get("/report",PatientMiddleware ,getReportAll);
+PatientRouter.get("/report/:id",PatientMiddleware ,getReportOne);
 
-PatientRouter.put("/profile", updateProfile);
+PatientRouter.put("/profile",PatientMiddleware ,updateProfile);
 
 export {
     PatientRouter

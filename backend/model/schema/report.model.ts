@@ -17,6 +17,28 @@ export const reportSchema: Schema<IReport> = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Document",
     },
+    timeOfLastNormal: {
+      type: Date,
+      required: [true, "Time of last normal is required"],
+    },
+    symptoms: {
+      type: [String],
+      required: [false, "Symptoms are required"],
+    },
+    BP: {
+      type: String,
+      required: [false,"Heart Rate is not required"],
+    },
+    O2_Saturation: {
+      type: String,
+      required: [false,"Heart Rate is not required"],
+    },
+    HR: {
+      type: String,
+      required: [false,"Heart Rate is not required"],
+    },
   },
-  { timestamps: true }
+  { 
+    timestamps: true
+  }
 );

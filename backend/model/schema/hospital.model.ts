@@ -37,6 +37,12 @@ export const hospitalSchema: Schema<IHospital> = new Schema(
       type: String,
       required: [true, "Status is required"],
     },
+    role: {
+      type: String,
+      enum: ["Hospital"],
+      required: [true, "Role is required"],
+      default: "Hospital",
+    },
   },
   { timestamps: true }
 );

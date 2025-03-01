@@ -2,7 +2,7 @@ import {
     login,
     register,
     getProfile,
-    getHistory,
+    verifyAdmin,
     getReportAll,
     getReportOne,
     updateProfile
@@ -12,7 +12,7 @@ export {
     login,
     register,
     getProfile,
-    getHistory,
+    verifyAdmin,
     getReportAll,
     getReportOne,
     updateProfile

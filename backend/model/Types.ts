@@ -2,18 +2,19 @@ import { Document, Types } from "mongoose";
 
 export interface IPatient extends Document {
   email: string;
-  gender: string;
   role: "Patient";
   password: string;
   fullName: string;
   patientId: string;
   phoneNumber: string;
+  gender: "Male" | "Female";
 }
 
 export interface IHospital extends Document {
   email: string;
   status: string;
   address: string;
+  role: "Hospital";
   password: string;
   fullName: string;
   hospitalId: string;
@@ -35,11 +36,22 @@ export interface IDocument extends Document {
 }
 
 export interface IReport extends Document {
+  BP?: string;
+  HR?: string;
+  symptoms: string[];
+  O2_Saturation?: string;
+  timeOfLastNormal: Date;
   caseId: Types.ObjectId;
-  image?: Types.ObjectId;
   patientId: Types.ObjectId;
   document?: Types.ObjectId;
 }
 
-
-// That’s a solid observation. It really comes down to your app’s query patterns. Keeping documents and reports in their own collections and referencing the case with a caseId is a classic normalized approach, making them independent and easier to manage. However, if you’re often fetching a case along with its related documents and reports, embedding their IDs directly in the case document as arrays can speed up lookups. It's all about weighing the trade-offs between normalization (flexibility and smaller document sizes) and denormalization (query performance and convenience).
+/*
+  So basically there are two types of documents 
+  Images and Reports
+  Reports can be docs or Pdf and will be made By Doctor/Hospital himself,reports are filan verdict of the doctor.
+  Images will be uploaded by Hospital on behalf of Patient,Images can have annotations, Images are completely optional.
+*/
+/*
+  Should Case Contain report Id? That’s a solid observation. It really comes down to your app’s query patterns. Keeping documents and reports in their own collections and referencing the case with a caseId is a classic normalized approach, making them independent and easier to manage. However, if you’re often fetching a case along with its related documents and reports, embedding their IDs directly in the case document as arrays can speed up lookups. It's all about weighing the trade-offs between normalization (flexibility and smaller document sizes) and denormalization (query performance and convenience).
+*/

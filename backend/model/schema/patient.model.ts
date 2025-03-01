@@ -24,17 +24,19 @@ export const patientSchema: Schema<IPatient> = new Schema(
     },
     gender: {
       type: String,
+      enum: ["Male", "Female"],
       required: [true, "Gender is required"],
     },
     role: {
       type: String,
       enum: ["Patient"],
-      default: "Patient",
       required: [true, "Role is required"],
+      default: "Patient",
     },
     phoneNumber: {
       type: String,
       required: [true, "Phone number is required"],
+      match: [/^\d{10}$/, "Phone number must be exactly 10 digits"],
     },
   },
   { timestamps: true }

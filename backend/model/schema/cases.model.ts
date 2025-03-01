@@ -20,7 +20,7 @@ export const caseSchema: Schema<ICase> = new Schema(
       required: [true, "Status is required"],
     },
   },
-  { timestamps: true }
+  { 
+    timestamps: true 
+  }
 );
-
-
