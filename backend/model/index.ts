@@ -4,7 +4,7 @@ import { reportSchema } from "./schema/report.model";
 import { patientSchema } from "./schema/patient.model";
 import { documentSchema } from "./schema/document.model";
 import { hospitalSchema } from "./schema/hospital.model";
-import { ICase, IDocument, IHospital, IPatient, IReport } from "./Types";
+import { ICase, IDocument, IHospital, IPatient, IReport } from "./schema/Type/data.type";
 
 const Case = model<ICase>("Case", caseSchema);
 const Report = model<IReport>("Report", reportSchema);

@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { IReport } from "../Types";
+import { IReport } from "./Type/data.type";
 
 export const reportSchema: Schema<IReport> = new Schema(
   {

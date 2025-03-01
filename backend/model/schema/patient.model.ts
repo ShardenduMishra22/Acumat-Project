@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { IPatient } from "../Types";
+import { IPatient } from "./Type/data.type";
 
 export const patientSchema: Schema<IPatient> = new Schema(
   {

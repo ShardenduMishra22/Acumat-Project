@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { IDocument } from "../Types";
+import { IDocument } from "./Type/data.type";
 
 
 export const documentSchema: Schema<IDocument> = new Schema(
