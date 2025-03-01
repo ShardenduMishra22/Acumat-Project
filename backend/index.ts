@@ -20,8 +20,9 @@ app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+import { AllRouter } from "./routes/index"
 
-
+app.use("/api",AllRouter)
 
 // Routes
 
