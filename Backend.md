@@ -57,7 +57,6 @@
 6. **DELETE** `/cases/:id` → Remove a case.  
 7. **PUT** `/cases/:id` → Update a specific case.  
 8. **GET** `/cases/:id` → Retrieve a specific case.  
-9. **PUT** `/cases/status/:id` → Update the status of a specific case (e.g., "Pending", "Approved", "Rejected").
 
 ### **Case Data Model**
 
@@ -77,10 +76,10 @@
 
 *(Images are stored as documents with `documentType` set to `"image"`.)*
 
-10. **DELETE** `/cases/images/:id` → Remove specific images.
-11. **GET** `/cases/images/:id` → Get images related to a specific case.  
-12. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
-13. **PUT** `/cases/images/:id` → Update images for a case (e.g., add annotations or replace images).  
+9. **DELETE** `/cases/images/:id` → Remove specific images.
+10. **GET** `/cases/images/:id` → Get images related to a specific case.  
+11. **POST** `/cases/images/:id` → Upload images (CT, MRI, etc.) for a case.  
+12. **PUT** `/cases/images/:id` → Update images for a case (e.g., add annotations or replace images).  
 
 ### **Image Data Model**
 
@@ -101,11 +100,11 @@
 
 ### **Report & Document Management**
 
-14. **GET** `/documents/:id` → Retrieve a specific document.  
-15. **DELETE** `/documents/:id` → Remove an uploaded document.
-16. **GET** `/cases/:id/reports` → Fetch generated reports for a case.  
-17. **POST** `/documents` → Upload additional PDFs or supporting documents.  
-18. **POST** `/reports/send` → Send a report to a patient (via email or hospital system).  
+13. **GET** `/documents/:id` → Retrieve a specific document.  
+14. **DELETE** `/documents/:id` → Remove an uploaded document.
+15. **GET** `/cases/:id/reports` → Fetch generated reports for a case.  
+16. **POST** `/documents` → Upload additional PDFs or supporting documents.  
+17. **POST** `/reports/send` → Send a report to a patient (via email or hospital system).  
 
 ### **Report Data Model**
 
@@ -142,13 +141,13 @@
 
 ### **Emergency & Quick Actions**
 
-19. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).
+18. **POST** `/emergency/activate` → Activate emergency protocol (e.g., Code Stroke).
 
 ---
 
 ### **Guidelines & Notifications**
 
-20. **GET** `/notifications` → Retrieve alerts and notifications.
+29. **GET** `/notifications` → Retrieve alerts and notifications.
 
 ---
 

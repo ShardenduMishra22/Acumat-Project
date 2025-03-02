@@ -92,6 +92,132 @@ const verifyHospital = async (req: Request, res: Response) => {
     }
 }
 
+const postCase = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const getAllCases = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const getUniqueCase = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const deleteCase = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const updateCase = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const getDocumentOne = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const postDocument = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const updateDocument = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const deleteDocument = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const postReport = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const getReportsOne = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const updateReport = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+const deleteReport = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
+
+
+const emergencyActivate = async (req: Request, res: Response) => {
+    try{
+
+    }catch(err){
+        console.log("There was an Error", err);
+        return apiResponse(res, 500, "Internal Server Error");
+    }
+}
 
 export{
     login,
