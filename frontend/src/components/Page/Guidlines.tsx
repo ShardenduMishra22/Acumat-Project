@@ -1,7 +1,7 @@
 const Guidlines = () => {
   return (
     <div>
-      Hi
+      Hi Guidlines
     </div>
   )
 }

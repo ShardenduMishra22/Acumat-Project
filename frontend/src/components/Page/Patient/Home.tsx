@@ -1,5 +1,5 @@
 const HomePatient = () => {
-  return <div>Hi</div>;
+  return <div>Hi Patient Home</div>;
 };
 
 export default HomePatient;

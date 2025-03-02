@@ -1,7 +1,7 @@
 const Register = () => {
   return (
     <div>
-      Hi
+      Hi register
     </div>
   )
 }

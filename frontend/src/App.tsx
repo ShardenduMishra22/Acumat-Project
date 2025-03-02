@@ -4,6 +4,8 @@ import Login from './components/Page/Login';
 import Landing from './components/Page/Landing';
 import { Route, Routes } from 'react-router-dom';
 import Register from './components/Page/Register';
+import NotFound from './components/Page/Not-Found';
+import Guidlines from './components/Page/Guidlines';
 import HomePatient from './components/Page/Patient/Home';
 import HomeHospital from './components/Page/Hospital/Home';
 import ReportsPatient from './components/Page/Patient/Reports';
@@ -11,7 +13,6 @@ import ProfilePatient from './components/Page/Patient/Profile';
 import ProtectedPatient from './components/Routes/protected/patient.route';
 import UnprotectedRoutes from './components/Routes/un-protected/unprotected';
 import ProtectedHospital from './components/Routes/protected/hospital.route';
-import Guidlines from './components/Page/Guidlines';
 
 const App = () => {
   return (
@@ -30,7 +31,7 @@ const App = () => {
             <Register />
           </UnprotectedRoutes>
         } />
-        <Route path="/register" element={
+        <Route path="/guidlines" element={
           <UnprotectedRoutes>
             <Guidlines />
           </UnprotectedRoutes>
@@ -63,6 +64,12 @@ const App = () => {
         <Route path="/too-fast" element={
           <UnprotectedRoutes>
             <Fast />
+          </UnprotectedRoutes>
+        } />
+
+        <Route path="*" element={
+          <UnprotectedRoutes>
+            <NotFound />
           </UnprotectedRoutes>
         } />
       </Routes>

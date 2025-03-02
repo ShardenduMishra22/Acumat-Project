@@ -1,7 +1,7 @@
 const ReportsPatient = () => {
   return (
     <div>
-      hi
+      hi reports
     </div>
   )
 }
