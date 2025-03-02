@@ -1,8 +1,8 @@
-import { apiResponse } from "../../util/apiReponse";
-import { Patient, Report } from "../../model";
-import { Request, Response } from "express";
-import jwt from 'jsonwebtoken';
 import bcrypt from "bcryptjs";
+import jwt from 'jsonwebtoken';
+import { Request, Response } from "express";
+import { Patient, Report } from "../../model";
+import { apiResponse } from "../../util/apiReponse";
 
 const registerP = async (req: Request, res: Response) => {
     try {

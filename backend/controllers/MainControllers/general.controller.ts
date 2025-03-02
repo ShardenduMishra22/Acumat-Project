@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { apiResponse } from "../../util/apiReponse";
 import { Error } from "mongoose";
 import { Notification } from "../../model";
+import { Request, Response } from "express";
+import { apiResponse } from "../../util/apiReponse";
 
 const getAllNotification = async (req: Request, res: Response) => {
     try {
