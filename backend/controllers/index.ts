@@ -1,3 +1,29 @@
+import{
+    postDocument,
+    getDocumentOne,
+    updateDocument,
+    deleteDocument,
+} from "./MainControllers/docs.controller";
+
+import {
+    postCase,
+    deleteCase,
+    updateCase,
+    getAllCases,
+    getUniqueCase,
+} from "./MainControllers/cases.controller";
+
+import {
+    postReport,
+    updateReport,
+    deleteReport,
+    getReportsOne,
+} from "./MainControllers/report.controller";
+
+import {
+    getAllNotification
+} from "./MainControllers/general.controller";
+
 import {
     loginP,
     registerP,
@@ -8,29 +34,13 @@ import {
     updateProfile
 } from './MainControllers/patient.controller';
 
-import {
-    getAllNotification
-} from "../controllers/MainControllers/general.controller"
-
 import{
     login,
     register,
-    postCase,
-    deleteCase,
-    updateCase,
-    postReport,
-    getAllCases,
-    updateReport,
-    deleteReport,
-    postDocument,
-    getUniqueCase,
-    getReportsOne,
     verifyHospital,
-    getDocumentOne,
-    updateDocument,
-    deleteDocument,
     emergencyActivate,
 } from "../controllers/MainControllers/hospital.controller"
+
 
 export {
     login,
