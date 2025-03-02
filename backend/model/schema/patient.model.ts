@@ -33,7 +33,7 @@ export const patientSchema: Schema<IPatient> = new Schema(
       default: "Patient",
     },
     phoneNumber: {
-      type: String,
+      type: Number,
       required: [true, "Phone number is required"],
       match: [/^\d{10}$/, "Phone number must be exactly 10 digits"],
     },

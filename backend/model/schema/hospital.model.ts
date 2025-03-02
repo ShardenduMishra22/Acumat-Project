@@ -8,16 +8,16 @@ export const hospitalSchema: Schema<IHospital> = new Schema(
       type: String,
       required: [true, "Full name is required"],
     },
-    hospitalId: {
-      type: String,
-      required: [true, "Hospital ID is required"],
-      unique: true,
-    },
     email: {
       type: String,
       required: [true, "Email is required"],
       unique: true,
       match: [/\S+@\S+\.\S+/, "Please use a valid email address"],
+    },
+    phoneNumber: {
+      type: Number,
+      required: [true, "Phone number is required"],
+      match: [/^\d{10}$/, "Phone number must be exactly 10 digits"],
     },
     password: {
       type: String,
@@ -36,7 +36,6 @@ export const hospitalSchema: Schema<IHospital> = new Schema(
     role: {
       type: String,
       enum: ["Hospital"],
-      required: [true, "Role is required"],
       default: "Hospital",
     },
   },

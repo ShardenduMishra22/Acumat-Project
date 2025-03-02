@@ -8,7 +8,7 @@ export interface IPatient extends Document {
   createdAt?: Date;
   updatedAt?: Date;
   patientId: string;
-  phoneNumber: string;
+  phoneNumber: Number;
   gender: "Male" | "Female";
 }
 
@@ -21,6 +21,7 @@ export interface IHospital extends Document {
   password: string;
   fullName: string;
   hospitalId: string;
+  phoneNumber: Number;
   cases: Types.ObjectId[];
 }
 
