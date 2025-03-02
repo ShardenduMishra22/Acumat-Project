@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Loader from "@/components/Loader";
-import { Navigate } from "react-router-dom";
-import axiosInstance from "@/lib/axiosInstance";
-import { useUserStore } from "@/components/store/userStore";
 import React, { ReactNode, useEffect, useState } from "react";
+import { useUserStore } from "@/components/store/userStore";
+import axiosInstance from "@/lib/axiosInstance";
+import { Navigate } from "react-router-dom";
+import Loader from "@/components/Loader";
 
 interface UnprotectedRoutesProps {
   children: ReactNode;
@@ -11,6 +11,7 @@ interface UnprotectedRoutesProps {
 
 const UnprotectedRoutes: React.FC<UnprotectedRoutesProps> = ({ children }) => {
   const [isUnauthenticated, setIsUnauthenticated] = useState<boolean | null>(null);
+  const [rateLimited, setRateLimited] = useState<boolean>(false);
   const setUser = useUserStore((state: any) => state.setUser);
 
   useEffect(() => {
@@ -34,6 +35,15 @@ const UnprotectedRoutes: React.FC<UnprotectedRoutesProps> = ({ children }) => {
         const hospitalResult = results[0];
         const patientResult = results[1];
 
+        // Immediate redirection if rate limiting is detected
+        if (
+          (hospitalResult.status === "rejected" && (hospitalResult.reason as any)?.response?.status === 429) ||
+          (patientResult.status === "rejected" && (patientResult.reason as any)?.response?.status === 429)
+        ) {
+          setRateLimited(true);
+          return;
+        }
+
         let isAuthenticated = false;
 
         if (
@@ -52,11 +62,7 @@ const UnprotectedRoutes: React.FC<UnprotectedRoutesProps> = ({ children }) => {
           isAuthenticated = true;
         }
 
-        if (isAuthenticated) {
-          setIsUnauthenticated(false);
-        } else {
-          setIsUnauthenticated(true);
-        }
+        setIsUnauthenticated(!isAuthenticated);
       } catch (error) {
         console.error("Error during authentication check:", error);
         setIsUnauthenticated(true);
@@ -65,6 +71,10 @@ const UnprotectedRoutes: React.FC<UnprotectedRoutesProps> = ({ children }) => {
 
     checkAuthentication();
   }, [setUser]);
+
+  if (rateLimited) {
+    return <Navigate to="/too-fast" />;
+  }
 
   if (isUnauthenticated === null) {
     return <Loader />;

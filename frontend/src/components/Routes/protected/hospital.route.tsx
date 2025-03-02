@@ -1,7 +1,7 @@
   /* eslint-disable @typescript-eslint/no-explicit-any */
   import Loader from "@/components/Loader";
-  import { Navigate } from "react-router-dom";
   import axiosInstance from "@/lib/axiosInstance";
+  import { Navigate, useNavigate } from "react-router-dom";
   import { useUserStore } from "@/components/store/userStore";
   import React, { ReactNode, useEffect, useState } from "react";
 
@@ -12,6 +12,7 @@
   const ProtectedHospital: React.FC<ProtectedHospitalProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
     const setUser = useUserStore((state: any) => state.setUser);
+    const navigate = useNavigate();
 
     useEffect(() => {
       const checkAuthentication = async () => {
@@ -31,7 +32,9 @@
           if (response.status === 200) {
             setUser(response.data.data);
             setIsAuthenticated(true);
-          } else {
+          } else if (response.status === 429) {
+            navigate("/too-fast");
+          }else {
             setIsAuthenticated(false);
           }
         } catch (error) {
