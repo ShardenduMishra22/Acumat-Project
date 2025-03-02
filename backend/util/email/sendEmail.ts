@@ -1,19 +1,27 @@
-import { createTransport } from "nodemailer";
-import { EmailTemplate } from "./EmailFormat";
+import { createTransport } from 'nodemailer';
+import { EmailTemplate } from './EmailFormat';
 
-export const SendEmail = async ({ to_email, to_name, otp }: { to_email: string; to_name: string; otp: number }) => {
+export const SendEmail = async ({
+  to_email,
+  to_name,
+  otp,
+}: {
+  to_email: string;
+  to_name: string;
+  otp: number;
+}) => {
   try {
-    console.log("Checkpoint - 1");
+    console.log('Checkpoint - 1');
 
     const transporter = createTransport({
-      service: "gmail",
+      service: 'gmail',
       auth: {
         user: process.env.MAIL_ID,
         pass: process.env.MAIL_PASS,
       },
     });
 
-    console.log("Checkpoint - 2");
+    console.log('Checkpoint - 2');
 
     const emailBody = `
       <!DOCTYPE html>
@@ -35,11 +43,11 @@ export const SendEmail = async ({ to_email, to_name, otp }: { to_email: string; 
       html: emailBody,
     };
 
-    console.log("Checkpoint - 3");
+    console.log('Checkpoint - 3');
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
+    console.log('Email sent: ' + info.response);
   } catch (error) {
-    console.error("Error while sending email: ", error);
+    console.error('Error while sending email: ', error);
   }
 };

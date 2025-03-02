@@ -4,10 +4,10 @@
     "module": "commonjs",
     "outDir": "./dist",
     "target": "es6",
-    "rootDir": "./", 
+    "rootDir": "./",
     "strict": true,
-    "jsx": "react",
+    "jsx": "react"
   },
-//   Prevents TypeScript from compiling files in the following directories ie unnecessary files
+  //   Prevents TypeScript from compiling files in the following directories ie unnecessary files
   "exclude": ["node_modules", "dist"]
 }

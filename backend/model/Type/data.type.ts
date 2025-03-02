@@ -1,15 +1,15 @@
-import { Document, Types } from "mongoose";
+import { Document, Types } from 'mongoose';
 
 export interface IPatient extends Document {
   email: string;
-  role: "Patient";
+  role: 'Patient';
   password: string;
   fullName: string;
   createdAt?: Date;
   updatedAt?: Date;
   patientId: string;
   phoneNumber: Number;
-  gender: "Male" | "Female";
+  gender: 'Male' | 'Female';
 }
 
 export interface IHospital extends Document {
@@ -17,7 +17,7 @@ export interface IHospital extends Document {
   address: string;
   createdAt?: Date;
   updatedAt?: Date;
-  role: "Hospital";
+  role: 'Hospital';
   password: string;
   fullName: string;
   hospitalId: string;
@@ -30,7 +30,7 @@ export interface ICase extends Document {
   updatedAt?: Date;
   patientId: Types.ObjectId;
   hospitalId: Types.ObjectId;
-  status: "Pending" | "Approved" | "Rejected";
+  status: 'Pending' | 'Approved' | 'Rejected';
 }
 
 export interface IDocument extends Document {
@@ -40,7 +40,7 @@ export interface IDocument extends Document {
   documentName: string;
   caseId: Types.ObjectId;
   patientId: Types.ObjectId;
-  documentType: "pdf" | "doc" | "docx" | "image";
+  documentType: 'pdf' | 'doc' | 'docx' | 'image';
 }
 
 export interface IReport extends Document {
