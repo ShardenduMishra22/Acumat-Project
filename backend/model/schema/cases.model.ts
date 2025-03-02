@@ -17,7 +17,7 @@ export const caseSchema: Schema<ICase> = new Schema(
     status: {
       type: String,
       enum: ["Pending", "Approved", "Rejected"],
-      required: [true, "Status is required"],
+      default: "Pending",
     },
   },
   { 

@@ -53,7 +53,7 @@ export interface IReport extends Document {
   timeOfLastNormal: Date;
   caseId: Types.ObjectId;
   patientId: Types.ObjectId;
-  document?: Types.ObjectId;
+  documentId?: Types.ObjectId;
 }
 
 export interface INotification extends Document {

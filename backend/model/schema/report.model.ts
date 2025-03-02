@@ -13,7 +13,7 @@ export const reportSchema: Schema<IReport> = new Schema(
       ref: "Patient",
       required: [true, "Patient ID is required"],
     },
-    document: {
+    documentId: {
       type: Schema.Types.ObjectId,
       ref: "Document",
     },
