@@ -1,16 +1,70 @@
 import Theme from './components/Theme';
 import Fast from './components/Page/Fast';
-import Home from './components/Page/Home';
+import Login from './components/Page/Login';
 import Landing from './components/Page/Landing';
 import { Route, Routes } from 'react-router-dom';
+import Register from './components/Page/Register';
+import HomePatient from './components/Page/Patient/Home';
+import HomeHospital from './components/Page/Hospital/Home';
+import ReportsPatient from './components/Page/Patient/Reports';
+import ProfilePatient from './components/Page/Patient/Profile';
+import ProtectedPatient from './components/Routes/protected/patient.route';
+import UnprotectedRoutes from './components/Routes/un-protected/unprotected';
+import ProtectedHospital from './components/Routes/protected/hospital.route';
+import Guidlines from './components/Page/Guidlines';
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/too-fast" element={<Fast />} />
+
+        {/* Login and Register */}
+        <Route path="/login" element={
+          <UnprotectedRoutes>
+            <Login />
+          </UnprotectedRoutes>
+        } />
+        <Route path="/register" element={
+          <UnprotectedRoutes>
+            <Register />
+          </UnprotectedRoutes>
+        } />
+        <Route path="/register" element={
+          <UnprotectedRoutes>
+            <Guidlines />
+          </UnprotectedRoutes>
+        } />
+
+        {/* Patient */}
+        <Route path="/patient/home" element={
+          <ProtectedPatient>
+            <HomePatient />
+          </ProtectedPatient>
+        } />
+        <Route path="/patient/profile" element={
+          <ProtectedPatient>
+            <ProfilePatient />
+          </ProtectedPatient>
+        } />
+        <Route path="/patient/viewReports" element={
+          <ProtectedPatient>
+            <ReportsPatient />
+          </ProtectedPatient>
+        } />
+
+        {/* Hospital */}
+        <Route path="/hospital/home" element={
+          <ProtectedHospital>
+            <HomeHospital />
+          </ProtectedHospital>
+        } />
+
+        <Route path="/too-fast" element={
+          <UnprotectedRoutes>
+            <Fast />
+          </UnprotectedRoutes>
+        } />
       </Routes>
       <div className="relative min-h-screen">
         <Theme />
